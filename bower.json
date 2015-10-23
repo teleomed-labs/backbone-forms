@@ -1,23 +1,9 @@
 {
-  
   "name": "backbone-forms",
-  
-  "version": "0.14.0",
-  
-  "main": [
-    
-    "distribution/backbone-forms.js"
-    
-  ],
-  
+  "description": "A flexible, customisable form framework for Backbone.JS applications.",
+  "main": [ "distribution/backbone-forms.min.js" ],
   "dependencies": {
-    
+    "jquery": "~2.1.0",
     "backbone": ">=1.0.0"
-    
-  },
-  
-  "devDependencies": {
-    
   }
-  
 }

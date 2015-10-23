@@ -267,3 +267,5 @@ Form = Backbone.View.extend({
     interpolate: /<%=([\s\S]+?)%>/g
     escape: /<%-([\s\S]+?)%>/g
   editors: {})
+
+Backbone.Form = Form
