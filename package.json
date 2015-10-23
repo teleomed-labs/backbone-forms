@@ -17,7 +17,4 @@
   },
   "main": "distribution.amd/backbone-forms.js",
   "browser": "distribution/backbone-forms.js",
-  "scripts": {
-    "test": "open test/index.html"
-  }
 }
