@@ -17,7 +17,7 @@ module.exports = (grunt) ->
           'src/validators.coffee',
           'src/fieldset.coffee',
           'src/field.coffee',
-          'src/nestedField.coffee',
+          'src/nestedfield.coffee',
           'src/editor.coffee',
           'src/editors/text.coffee',
           'src/editors/textarea.coffee',
@@ -34,12 +34,18 @@ module.exports = (grunt) ->
           'src/editors/datetime.coffee',
           'src/editors/extra/list.coffee',
         ]
+      test:
+        dest: '.tmp/specs.coffee'
+        src:  'test/main.coffee'
 
     # Convert CoffeeScript to Javascript
     coffee:
       dist:
         src: '.tmp/backbone-forms.coffee'
         dest: 'dist/backbone-forms.js'
+      test:
+        src: '.tmp/specs.coffee'
+        dest: '.tmp/specs.js'
 
     # Uglify/minify the build
     uglify:
@@ -65,9 +71,19 @@ module.exports = (grunt) ->
           }
         ]
 
+    mocha:
+      all: [ 'test/*.html' ]
+
+
     grunt.registerTask 'default', [
       'concat'
       'coffee'
       'uglify'
       'copy'
+    ]
+
+    grunt.registerTask 'test', [
+      'concat'
+      'coffee:test'
+      'mocha'
     ]

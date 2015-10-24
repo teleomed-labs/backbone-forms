@@ -3,11 +3,12 @@
   "version": "0.14.0",
   "dependencies": {},
   "devDependencies": {
-    "grunt" : "*",
-    "grunt-contrib-copy": "*",
+    "grunt": "*",
     "grunt-contrib-coffee": "*",
     "grunt-contrib-concat": "*",
+    "grunt-contrib-copy": "*",
     "grunt-contrib-uglify": "*",
+    "grunt-mocha": "^0.4.13",
     "matchdep": "*"
   }
 }
