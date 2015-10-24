@@ -103,3 +103,9 @@
   height: 50px;
   overflow: scroll;
 }
+
+.modal-dialog {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
