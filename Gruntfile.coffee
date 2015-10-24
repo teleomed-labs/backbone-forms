@@ -11,7 +11,7 @@ module.exports = (grunt) ->
     # Concat all the files into one file.
     concat:
       dist:
-        dest: 'dist/backbone-forms.coffee'
+        dest: '.tmp/backbone-forms.coffee'
         src:  [
           'src/form.coffee',
           'src/validators.coffee',
@@ -38,7 +38,7 @@ module.exports = (grunt) ->
     # Convert CoffeeScript to Javascript
     coffee:
       dist:
-        src: 'dist/backbone-forms.coffee'
+        src: '.tmp/backbone-forms.coffee'
         dest: 'dist/backbone-forms.js'
 
     # Uglify/minify the build
