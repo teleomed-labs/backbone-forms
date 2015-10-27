@@ -1,5 +1,3 @@
-'use strict'
-
 mountFolder = (connect, dir) ->
     connect.static require('path').resolve(dir)
 
@@ -7,6 +5,15 @@ module.exports = (grunt) ->
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks)
 
   grunt.initConfig
+    watch:
+      options:
+        nospawn: true
+      coffee:
+        files: [ 'src/{,*/}*.coffee' ]
+        tasks: [ 'concat:dist', 'coffee:dist' ]
+      coffeeTest:
+        files: [ 'test/{,*/}*.coffee' ]
+        tasks: [ 'concat:test', 'coffee:test', 'mocha_phantomjs' ]
 
     # Concat all the files into one file.
     concat:
@@ -71,8 +78,8 @@ module.exports = (grunt) ->
           }
         ]
 
-    mocha:
-      all: [ 'test/*.html' ]
+    mocha_phantomjs:
+      all: [ 'test/index.html' ]
 
 
     grunt.registerTask 'default', [
@@ -85,5 +92,5 @@ module.exports = (grunt) ->
     grunt.registerTask 'test', [
       'concat'
       'coffee:test'
-      'mocha'
+      'mocha_phantomjs'
     ]
