@@ -22,7 +22,7 @@
       schema = @schema
       if !schema
         throw new Error('Missing required option \'schema\'')
-      @template = options.template or @constructor.template
+      @template = options.template or schema.listTemplate or @constructor.template
       #Determine the editor to use
       @Editor = do ->
         type = schema.itemType
