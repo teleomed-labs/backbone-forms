@@ -41,6 +41,9 @@ Form.editors.DateTime = Form.editors.Base.extend({
     @template = options.template or @constructor.template
     return
   render: ->
+    pad = (n) ->
+      if n < 10 then '0' + n else n
+
     schema = @schema
     $ = Backbone.$
     #Create options
@@ -55,9 +58,6 @@ Form.editors.DateTime = Form.editors.Base.extend({
       hours: hoursOptions.join()
       mins: minsOptions.join())))
     #Include the date editor
-
-    pad = (n) ->
-      if n < 10 then '0' + n else n
 
     $el.find('[data-date]').append @dateEditor.render().el
     #Store references to selects
