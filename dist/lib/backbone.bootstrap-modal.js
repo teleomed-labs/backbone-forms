@@ -39,7 +39,7 @@
                 <a href="#" class="button cancel u-floatLeft" style="margin-right: 10px;">{{cancelText}}</a>\
                 <% } %>\
             <% } %>\
-            <a href="#" class="button button-primary ok">{{okText}}</a>\
+            <a href="#" class="button button--primary ok">{{okText}}</a>\
             </div>\
           </div>\
       </div>\

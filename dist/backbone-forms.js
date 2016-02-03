@@ -1703,6 +1703,13 @@
     },
     render: function() {
       var $, $el, hoursOptions, minsOptions, pad, schema;
+      pad = function(n) {
+        if (n < 10) {
+          return '0' + n;
+        } else {
+          return n;
+        }
+      };
       schema = this.schema;
       $ = Backbone.$;
       hoursOptions = _.map(_.range(0, 24), function(hour) {
@@ -1715,13 +1722,6 @@
         hours: hoursOptions.join(),
         mins: minsOptions.join()
       })));
-      pad = function(n) {
-        if (n < 10) {
-          return '0' + n;
-        } else {
-          return n;
-        }
-      };
       $el.find('[data-date]').append(this.dateEditor.render().el);
       this.$hour = $el.find('select[data-type="hour"]');
       this.$min = $el.find('select[data-type="min"]');
@@ -1813,7 +1813,7 @@
         if (!schema) {
           throw new Error('Missing required option \'schema\'');
         }
-        this.template = options.template || this.constructor.template;
+        this.template = options.template || schema.listTemplate || this.constructor.template;
         this.Editor = (function() {
           var type;
           type = schema.itemType;
