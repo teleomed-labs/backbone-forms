@@ -96,6 +96,10 @@ Form.editors.Select = Form.editors.Base.extend(
   getValue: ->
     @$el.val()
   setValue: (value) ->
+    # Set value to the first option if no valid value is provided.
+    if not value? and not @value
+      value = @$('option').first().val()
+
     @value = value
     @$el.val value
     return

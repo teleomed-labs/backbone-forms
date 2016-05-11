@@ -1117,6 +1117,9 @@
       return this.$el.val();
     },
     setValue: function(value) {
+      if ((value == null) && !this.value) {
+        value = this.$('option').first().val();
+      }
       this.value = value;
       this.$el.val(value);
     },
