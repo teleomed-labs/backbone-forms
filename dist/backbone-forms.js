@@ -1826,12 +1826,17 @@
           if (editors.List[type]) {
             return editors.List[type];
           }
-          return editors[type];
+          if (_.isString(type)) {
+            return editors[type];
+          } else {
+            return type;
+          }
         })();
+        this.ListItem = schema.itemClass || editors.List.Item;
         this.items = [];
       },
       render: function() {
-        var $, $el, self, value;
+        var $, $el, domReferencedElement, self, value;
         self = this;
         value = this.value || [];
         $ = Backbone.$;
@@ -1846,7 +1851,11 @@
             this.addItem();
           }
         }
+        domReferencedElement = this.el;
         this.setElement($el);
+        if (domReferencedElement) {
+          $(domReferencedElement).replaceWith(this.el);
+        }
         this.$el.attr('id', this.id);
         this.$el.attr('name', this.key);
         if (this.hasFocus) {
@@ -1858,7 +1867,7 @@
         var _addItem, editors, item, self;
         self = this;
         editors = Form.editors;
-        item = new editors.List.Item({
+        item = new this.ListItem({
           list: this,
           form: this.form,
           schema: this.schema,
@@ -1949,6 +1958,7 @@
         return _.without(values, void 0, '');
       },
       setValue: function(value) {
+        this.items = [];
         this.value = value;
         this.render();
       },
