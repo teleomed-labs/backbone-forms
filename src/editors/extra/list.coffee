@@ -52,7 +52,12 @@
       else
         if !@Editor.isAsync
           @addItem()
+      #Save a copy of the pre-exising element, if exists
+      domReferencedElement = @el
       @setElement $el
+      #In case of there was a pre-existing element already placed in the DOM, then update it
+      if domReferencedElement
+        $(domReferencedElement).replaceWith @el
       @$el.attr 'id', @id
       @$el.attr 'name', @key
       if @hasFocus
@@ -148,6 +153,7 @@
       #Filter empty items
       _.without values, undefined, ''
     setValue: (value) ->
+      @items = []
       @value = value
       @render()
       return
