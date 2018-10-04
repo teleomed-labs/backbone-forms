@@ -33,7 +33,12 @@
         if editors.List[type]
           return editors.List[type]
         #Or whichever was passed
-        editors[type]
+        if _.isString(type)
+          editors[type]
+        else
+          type
+
+      @ListItem = schema.itemClass or editors.List.Item
       @items = []
       return
     render: ->
@@ -67,7 +72,7 @@
       self = this
       editors = Form.editors
       #Create the item
-      item = new (editors.List.Item)(
+      item = new (@ListItem)(
         list: this
         form: @form
         schema: @schema
