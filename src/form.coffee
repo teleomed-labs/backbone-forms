@@ -32,7 +32,7 @@ Form = Backbone.View.extend({
     @Field = options.Field or @Field or constructor.Field
     @NestedField = options.NestedField or @NestedField or constructor.NestedField
     #Check which fields will be included (defaults to all)
-    selectedFields = @selectedFields = options.fields or _.keys(schema)
+    selectedFields = @selectedFields = options.fields or @fields or constructor.fields or _.keys(schema)
     #Create fields
     fields = @fields = {}
     _.each selectedFields, ((key) ->
