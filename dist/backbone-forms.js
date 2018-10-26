@@ -33,7 +33,7 @@
       this.Fieldset = options.Fieldset || this.Fieldset || constructor.Fieldset;
       this.Field = options.Field || this.Field || constructor.Field;
       this.NestedField = options.NestedField || this.NestedField || constructor.NestedField;
-      selectedFields = this.selectedFields = options.fields || _.keys(schema);
+      selectedFields = this.selectedFields = options.fields || this.fields || constructor.fields || _.keys(schema);
       fields = this.fields = {};
       _.each(selectedFields, (function(key) {
         var fieldSchema;
@@ -102,6 +102,13 @@
           }
       }
     },
+    getTemplate: function() {
+      if (_.isString(this.template)) {
+        return this.template = _.template(this.template);
+      } else {
+        return this.template;
+      }
+    },
     templateData: function() {
       var options;
       options = this.options;
@@ -110,11 +117,12 @@
       };
     },
     render: function() {
-      var $, $form, fields, self;
+      var $, $form, fields, self, tmpl;
       self = this;
       fields = this.fields;
       $ = Backbone.$;
-      $form = $($.trim(this.template(_.result(this, 'templateData'))));
+      tmpl = this.getTemplate();
+      $form = $($.trim(tmpl(_.result(this, 'templateData'))));
       $form.find('[data-editors]').add($form).each(function(i, el) {
         var $container, keys, selection;
         $container = $(el);
