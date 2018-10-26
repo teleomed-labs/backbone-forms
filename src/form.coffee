@@ -93,6 +93,12 @@ Form = Backbone.View.extend({
             return
           ), 0
     return
+  # Accept a function, or an Underscore-formatted string, as a form template.
+  getTemplate: ->
+    if _.isString(@template)
+      @template = _.template @template
+    else
+      @template
   templateData: ->
     options = @options
     { submitButton: options.submitButton }
@@ -101,7 +107,8 @@ Form = Backbone.View.extend({
     fields = @fields
     $ = Backbone.$
     #Render form
-    $form = $($.trim(@template(_.result(this, 'templateData'))))
+    tmpl = @getTemplate()
+    $form = $($.trim(tmpl(_.result(this, 'templateData'))))
     #Render standalone editors
     $form.find('[data-editors]').add($form).each (i, el) ->
       $container = $(el)
