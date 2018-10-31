@@ -362,7 +362,7 @@
       @itemToString value
     openEditor: ->
       self = this
-      ModalForm = @form.constructor
+      ModalForm = Backbone.Form
       form = @modalForm = new ModalForm(
         schema: @nestedSchema
         data: @value)
