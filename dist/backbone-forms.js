@@ -2203,7 +2203,7 @@
       openEditor: function() {
         var ModalForm, form, modal, self;
         self = this;
-        ModalForm = this.form.constructor;
+        ModalForm = Backbone.Form;
         form = this.modalForm = new ModalForm({
           schema: this.nestedSchema,
           data: this.value
