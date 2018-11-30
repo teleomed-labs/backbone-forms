@@ -1400,6 +1400,7 @@
     hasNestedForm: true,
     initialize: function(options) {
       this.value = {};
+      this.formAttributes = options.schema.formAttributes || {};
       Form.editors.Base.prototype.initialize.call(this, options);
       if (!this.form) {
         throw new Error('Missing required option "form"');
@@ -1409,14 +1410,15 @@
       }
     },
     render: function() {
-      var NestedForm;
+      var NestedForm, options;
       NestedForm = this.form.constructor;
-      this.nestedForm = new NestedForm({
+      options = _.extend({}, this.formAttributes, {
         schema: this.schema.subSchema,
         data: this.value,
         idPrefix: this.id + '_',
         Field: NestedForm.NestedField
       });
+      this.nestedForm = new NestedForm(options);
       this._observeFormEvents();
       this.$el.html(this.nestedForm.render().el);
       if (this.hasFocus) {
@@ -2201,13 +2203,14 @@
         return this.itemToString(value);
       },
       openEditor: function() {
-        var ModalForm, form, modal, self;
+        var ModalForm, form, modal, options, self;
         self = this;
         ModalForm = Backbone.Form;
-        form = this.modalForm = new ModalForm({
+        options = _.extend({}, this.nestedFormAttributes, {
           schema: this.nestedSchema,
           data: this.value
         });
+        form = this.modalForm = new ModalForm(options);
         modal = this.modal = new Form.editors.List.Modal.ModalAdapter({
           content: form,
           animate: true
@@ -2275,6 +2278,7 @@
           throw new Error('Missing required option "schema.subSchema"');
         }
         this.nestedSchema = schema.subSchema;
+        this.nestedFormAttributes = schema.formAttributes || {};
       }
     });
     Form.editors.List.NestedModel = Form.editors.List.Modal.extend({
