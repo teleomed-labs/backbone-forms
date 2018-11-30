@@ -14,6 +14,8 @@ Form.editors.Object = Form.editors.Base.extend(
   initialize: (options) ->
     #Set default value for the instance so it's not a shared object
     @value = {}
+    # Save form attributes to pass along to the new form constructor
+    @formAttributes = options.schema.formAttributes or {}
     #Init
     Form.editors.Base::initialize.call this, options
     #Check required options
@@ -26,11 +28,12 @@ Form.editors.Object = Form.editors.Base.extend(
     #Get the constructor for creating the nested form; i.e. the same constructor as used by the parent form
     NestedForm = @form.constructor
     #Create the nested form
-    @nestedForm = new NestedForm(
+    options = _.extend {}, @formAttributes,
       schema: @schema.subSchema
       data: @value
       idPrefix: @id + '_'
-      Field: NestedForm.NestedField)
+      Field: NestedForm.NestedField
+    @nestedForm = new NestedForm(options)
     @_observeFormEvents()
     @$el.html @nestedForm.render().el
     if @hasFocus

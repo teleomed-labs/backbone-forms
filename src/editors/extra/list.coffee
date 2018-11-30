@@ -363,9 +363,10 @@
     openEditor: ->
       self = this
       ModalForm = Backbone.Form
-      form = @modalForm = new ModalForm(
+      options = _.extend {}, @nestedFormAttributes,
         schema: @nestedSchema
-        data: @value)
+        data: @value
+      form = @modalForm = new ModalForm(options)
       modal = @modal = new (Form.editors.List.Modal.ModalAdapter)(
         content: form
         animate: true)
@@ -425,6 +426,7 @@
     if !schema.subSchema
       throw new Error('Missing required option "schema.subSchema"')
     @nestedSchema = schema.subSchema
+    @nestedFormAttributes = schema.formAttributes or {}
     return
   )
   Form.editors.List.NestedModel = Form.editors.List.Modal.extend(
