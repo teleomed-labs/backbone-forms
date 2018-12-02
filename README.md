@@ -85,35 +85,33 @@ $('body').append(form.el);
 
 
 
-<a name="top"/>
 ## Guide
 
 ### Table of Contents:
 - [Installation](#installation)
 - [Usage](#usage)
-- [Backbone.Form](#form)
+- [Backbone.Form](#backbone-form)
 - [Schema Definition](#schema-definition)
-  - [Text](#editor-text)
-  - [Checkboxes](#editor-checkboxes)
-  - [Select](#editor-select)
-  - [Radio](#editor-radio)
-  - [Object](#editor-object)
-  - [NestedModel](#editor-nestedmodel)
-  - [Date](#editor-date)
-  - [DateTime](#editor-datetime)
-  - [List](#editor-list)
+  - [Text](#text)
+  - [Checkboxes](#checkboxes)
+  - [Select](#select)
+  - [Radio](#radio)
+  - [Object](#object)
+  - [NestedModel](#nestedmodel)
+  - [Date](#date)
+  - [DateTime](#datetime)
+  - [List](#list)
 - [Validation](#validation)
 - [Customising templates](#customising-templates)
 - [More](#more)
   - [Editors without forms](#editors-without-forms)
-  - [Using nested fields](#nested-fields)
+  - [Using nested fields](#using-nested-fields)
   - [Custom editors](#custom-editors)
   - [Help](#help)
   - [Changelog](#changelog)
 
 
 
-<a name="installation"/>
 ## Installation
 
 Dependencies:
@@ -137,11 +135,10 @@ If you use Backbone with browserify or node.js, you can just `require('backbone-
 
 Note there is also a distribution file for RequireJS / AMD.
 
-[Back to top](#top)
+[Back to top](#guide)
 
 
 
-<a name="usage"/>
 ## Usage
 
 Forms are generated from a `schema`, which can be defined on the form itself or on a model.
@@ -217,10 +214,9 @@ Then instead of `form.commit()`, do:
 ### Initial data
 If a form has a model attached to it, the initial values are taken from the model's defaults. Otherwise, you may pass default values using the `schema.data`.
 
-[Back to top](#top)
+[Back to top](#guide)
 
 
-<a name="form"/>
 ## Backbone.Form
 
 ### Options
@@ -290,30 +286,29 @@ If a form has a model attached to it, the initial values are taken from the mode
 
   Fired when the form is submitted. The native Event is passed as an argument, so you can do event.preventDefault() to stop the form from submitting.
 
-[Back to top](#top)
+[Back to top](#guide)
 
 
-<a name="schema-definition"/>
-## Schema definition
+## Schema Definition
 
 The schema defined on your model can be the schema object itself, or a function that returns a schema object. This can be useful if you're referencing variables that haven't been initialized yet.
 
 The following default editors are included:
 
-- [Text](#editor-text)
+- [Text](#text)
 - Number
 - Password
 - TextArea
 - Checkbox
-- [Checkboxes](#editor-checkboxes)
+- [Checkboxes](#checkboxes)
 - Hidden
-- [Select](#editor-select)
-- [Radio](#editor-radio)
-- [Object](#editor-object)
-- [NestedModel](#editor-nestedmodel)
-- [Date](#editor-date)
-- [DateTime](#editor-datetime)
-- [List](#editor-list) An editable list of items (included in a separate file: `distribution/editors/list.min.js`)
+- [Select](#select)
+- [Radio](#radio)
+- [Object](#object)
+- [NestedModel](#nestedmodel)
+- [Date](#date)
+- [DateTime](#datetime)
+- [List](#list) An editable list of items (included in a separate file: `distribution/editors/list.min.js`)
 
 
 
@@ -383,9 +378,8 @@ Every editor fires the following events:
 
 Besides these three, editors can implement custom events, which are described below.
 
-[Back to top](#top)
+[Back to top](#guide)
 
-<a name="editor-text"/>
 ## Text
 
 Creates a normal text input.
@@ -395,7 +389,6 @@ Creates a normal text input.
   Changes the `type="text"` attribute. Used for HTML5 form inputs such as `url`, `tel`, `email`.  When viewing on a mobile device e.g. iOS, this will change the type of keyboard that is opened. For example, `tel` opens a numeric keypad.
 
 
-<a name="editor-select"/>
 ## Select
 
 Creates and populates a `<select>` element.
@@ -453,7 +446,6 @@ Creates and populates a `<select>` element.
     }
 
 
-<a name="editor-radio"/>
 ## Radio
 
 Creates and populates a list of radio inputs. Behaves the same way and has the same options as a `Select`.
@@ -484,14 +476,12 @@ If it uses object syntax, this option is not possible.
     };
 
 
-<a name="editor-checkboxes"/>
 ## Checkboxes
 
 Creates and populates a list of checkbox inputs. Behaves the same way and has the same options as a `Select`. To set defaults for this editor, use an array of values.
 
 Checkboxes options array has the same labelHTML option as Radio.
 
-<a name="editor-object"/>
 ## Object
 
 The Object editor creates an embedded child form representing a Javascript object.
@@ -523,7 +513,6 @@ The Object editor creates an embedded child form representing a Javascript objec
     });
 
 
-<a name="editor-nestedmodel"/>
 ## NestedModel
 
 Used to embed models within models.  Similar to the Object editor, but adds validation of the child form (if it is defined on the model), and keeps your schema cleaner.
@@ -552,7 +541,6 @@ Used to embed models within models.  Similar to the Object editor, but adds vali
 
 
 
-<a name="editor-date"/>
 ## Date
 
 Creates `<select>`s for date, month and year.
@@ -575,7 +563,6 @@ You can customise the way this editor behaves, throughout your app:
     editors.Date.monthNames = ['Jan', 'Feb', ...] //Defaults to full month names in English
 
 
-<a name="editor-datetime"/>
 ## DateTime
 
 Creates a Date editor and adds `<select>`s for time (hours and minutes).
@@ -585,7 +572,6 @@ Creates a Date editor and adds `<select>`s for time (hours and minutes).
   Optional. Controls the numbers in the minutes dropdown. Defaults to 15, so it is populated with 0, 15, 30, and 45 minutes.
 
 
-<a name="editor-list"/>
 ## List
 
 Creates a list of items that can be added, removed and edited. Used to manage arrays of data.
@@ -660,11 +646,10 @@ This is a special editor which is in **a separate file and must be included**:
         console.log('Last name for user "' + itemEditor.getValue().firstName + '" changed to "' + lastNameEditor.getValue() +'".');
     });
 
-[Back to top](#top)
+[Back to top](#guide)
 
 
 
-<a name="validation"/>
 ## Validation
 
 There are 2 levels of validation: schema validators and the regular
@@ -768,7 +753,7 @@ var User = Backbone.Model.extend({
 ```
 
 
-### Schema validators
+### Schema Validators
 Forms provide a `validate` method, which returns a dictionary of errors, or `null`. Validation is determined using the `validators` attribute on the schema (see above).
 
 If you model provides a `validate` method, then this will be called when you call `Form.validate`. Forms are also validated when you call `commit`. See the Backbone documentation for more details on model validation.
@@ -783,12 +768,11 @@ var schema = {
 
 var errors = form.commit();
 ```
-[Back to top](#top)
+[Back to top](#guide)
 
 
 
-<a name="customising-templates"/>
-## Customising templates
+## Customising Templates
 
 Backbone-Forms comes with a few options for rendering HTML. To use another template pack, such as for [Bootstrap](http://twitter.github.com/bootstrap/), just include the .js file from the `templates` folder, after including `backbone-forms.js`.
 
@@ -839,14 +823,12 @@ var form = new Backbone.Form({
 });
 ```
 
-[Back to top](#top)
+[Back to top](#guide)
 
 
 
-<a name="more"/>
 ## More
 
-<a name="editors-without-forms"/>
 ### Editors without forms
 
 You can add editors by themselves, without being part of a form. For example:
@@ -862,7 +844,6 @@ var select = new Backbone.Form.editors.Select({
 select.commit();
 ```
 
-<a name="nested-fields"/>
 ### Using nested fields
 
 If you are using a schema with nested attributes (using the `Object` type), you may want to include only some of the nested fields in a form. This can be accomplished by using 'path' syntax as in the example below.
@@ -905,7 +886,6 @@ var form = new Backbone.Form({
 })
 ```
 
-<a name="custom-editors"/>
 ### Custom editors
 
 Writing a custom editor is simple. They must extend from Backbone.Form.editors.Base.
@@ -985,13 +965,11 @@ var CustomEditor = Backbone.Form.editors.Base.extend({
 
 
 
-<a name="help"/>
-## Help & discussion
+## Help
 
 - [Google Groups](http://groups.google.com/group/backbone-forms)
 
 
-<a name="changelog"/>
 ## Changelog
 
 ### master
