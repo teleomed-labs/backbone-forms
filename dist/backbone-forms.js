@@ -1234,6 +1234,9 @@
       return this.$('input[type=radio]:checked').val();
     },
     setValue: function(value) {
+      if ((value == null) && (this.schema["default"] != null)) {
+        value = this.schema["default"];
+      }
       this.value = value;
       this.$('input[type=radio]').val([value]);
     },
