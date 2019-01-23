@@ -35,6 +35,10 @@ Form.editors.Radio = Form.editors.Select.extend({
   getValue: ->
     @$('input[type=radio]:checked').val()
   setValue: (value) ->
+    # Set a default value if defined on the schema.
+    if not value? and @schema.default?
+      value = @schema.default
+
     @value = value
     @$('input[type=radio]').val [ value ]
     return
