@@ -13,9 +13,9 @@ Form.NestedField = Form.Field.extend
         </label>
 
         <div>
+          <div class="error-help" data-help><%= help %></div>
           <span data-editor></span>
           <div class="error-text" data-error></div>
-          <div class="error-help"><%= help %></div>
         </div>
       </div>
     ''', null, Form.templateSettings

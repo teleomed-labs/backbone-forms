@@ -154,9 +154,9 @@ Form.Field = Backbone.View.extend({
       </label>
 
       <div>
+        <div data-help><%= help %></div>
         <span data-editor></span>
         <div data-error></div>
-        <div><%= help %></div>
       </div>
     </div>
   ''', null, Form.templateSettings
