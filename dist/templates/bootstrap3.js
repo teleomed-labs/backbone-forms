@@ -28,9 +28,9 @@
         <% } else { %><%- title %><% } %>\
       </label>\
       <div class="col-sm-10">\
+        <p class="help-block" data-help><%= help %></p>\
         <span data-editor></span>\
         <p class="help-block" data-error></p>\
-        <p class="help-block"><%= help %></p>\
       </div>\
     </div>\
   ');

@@ -636,12 +636,12 @@
       Backbone.View.prototype.remove.call(this);
     }
   }, {
-    template: _.template('    <div>      <label for="<%= editorId %>">        <% if (titleHTML){ %><%= titleHTML %>        <% } else { %><%- title %><% } %>      </label>      <div>        <span data-editor></span>        <div data-error></div>        <div><%= help %></div>      </div>    </div>  ', null, Form.templateSettings),
+    template: _.template('<div>\n  <label for="<%= editorId %>">\n    <% if (titleHTML){ %>\n      <%= titleHTML %>\n    <% } else { %>\n      <%- title %>\n    <% } %>\n  </label>\n\n  <div>\n    <div data-help><%= help %></div>\n    <span data-editor></span>\n    <div data-error></div>\n  </div>\n</div>', null, Form.templateSettings),
     errorClassName: 'error'
   });
 
   Form.NestedField = Form.Field.extend({
-    template: _.template('    <div>      <label for="<%= editorId %>">        <% if (titleHTML){ %><%= titleHTML %>        <% } else { %><%- title %><% } %>      </label>      <div>        <span data-editor></span>        <div class="error-text" data-error></div>        <div class="error-help"><%= help %></div>      </div>    </div>  ', null, Form.templateSettings)
+    template: _.template('<div>\n  <label for="<%= editorId %>">\n    <% if (titleHTML) { %>\n      <%= titleHTML %>\n    <% } else { %>\n      <%- title %>\n    <% } %>\n  </label>\n\n  <div>\n    <div class="error-help" data-help><%= help %></div>\n    <span data-editor></span>\n    <div class="error-text" data-error></div>\n  </div>\n</div>', null, Form.templateSettings)
   });
 
 
